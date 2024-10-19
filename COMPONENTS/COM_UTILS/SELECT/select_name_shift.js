@@ -14,6 +14,7 @@ function Select({ selectedValue, onChange }) {
     .get('http://' + myip +':80/link/driver/SelectListShift.php') // Remplacez <URL_DE_VOTRE_API> par l'URL de votre API
     .then(response => {
         setOptions(response.data);
+        console.log("rep : " + response);
       })
       .catch(error => {
         console.error(error);

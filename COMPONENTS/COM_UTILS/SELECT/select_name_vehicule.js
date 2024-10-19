@@ -14,6 +14,7 @@ function Select({ selectedValue, onChange }) {
       .get('http://' + myip +':80/link/driver/SelectListVehicule.php')
       .then(response => {
         setOptions(response.data);
+        console.log("reponse : "+response.data);
       })
       .catch(error => {
         console.error(error);
@@ -35,6 +36,7 @@ function Select({ selectedValue, onChange }) {
 
   return (
     <select style={customStyles} value={selectedValue} onChange={handleSelectChange}>
+      
       {options.map(option => (
         <option key={option.id} value={option.id}>
           {option.name}

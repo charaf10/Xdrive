@@ -51,6 +51,8 @@ export default function LOGIN({navigation}){
     .then((response) => {
         let result = response.data[0].Message
         let resultId = response.data[1].MessageId
+        console.log("result : " + result)
+        console.log("resultId :" + resultId)
         //let resultIdTesting = 16
         if (result == "correct") {
             //alert("id: " + resultId);

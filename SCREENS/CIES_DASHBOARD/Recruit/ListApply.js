@@ -31,7 +31,7 @@ const Item = ({item, onPress, backgroundColor, textColor}) => (
   </TouchableOpacity>
 );
 
- const ListApply = ({route}) => {
+ const ListApply = ({route, navigation}) => {
 
   const { id } = route.params;
   const [data, setData] = useState([]);
@@ -62,6 +62,19 @@ useEffect(() => {
 }, []);
 
 
+const ShowFiche = (id) =>{
+
+  console.log("item id: " + id);
+  setSelectedId(id)
+
+  navigation.navigate("Details_driver", {id: id});
+
+}
+
+
+
+
+
 const renderItem = ({item}) => {
   const backgroundColor = item.id === selectedId ? '#6e3b6e' : '#f9c2ff';
   const color = item.id === selectedId ? 'white' : 'black';
@@ -70,7 +83,7 @@ const renderItem = ({item}) => {
     <View>
     <Item
       item={item}
-      onPress={() => setSelectedId(item.id)}
+      onPress={() => ShowFiche(item.idDriver)}
       backgroundColor={backgroundColor}
       textColor={color}
     />

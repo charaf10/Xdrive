@@ -1,62 +1,35 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import Menu from '../../../COMPONENTS/FUNCT/MenuHorizontal'; // Assurez-vous d'importer votre composant Menu ici
+import Grille from './Grille'; // Assurez-vous d'importer votre composant Grid ici
 
-const Seat = ({ playerName }) => {
-  return (
-    <View style={styles.seat}>
-      <Text style={styles.playerName}>{playerName}</Text>
-    </View>
-  );
-};
+export default function MainPage() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-const Table = () => {
-  const [seats, setSeats] = useState([]);
-
-  const createSeat = () => {
-    const newSeat = {
-      id: seats.length + 1,
-      playerName: `Joueur ${seats.length + 1}`,
-    };
-    setSeats([...seats, newSeat]);
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
   };
 
   return (
-    <View style={styles.table}>
-      {seats.map((seat) => (
-        <Seat key={seat.id} playerName={seat.playerName} />
-      ))}
-      <Button title="Ajouter un siège" onPress={createSeat} />
+    <View style={styles.container}>
+      {/* Afficher le menu conditionnellement en fonction de l'état */}
+      <View style={styles.gridContainer}>
+        {/*<Menu/>*/}
+        <Grille/>
+      </View>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
-  table: {
+  container: {
+    flex: 1,
     flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '100%',
-    height: '100%',
-    backgroundColor: '#006400',
-    borderRadius: 10,
-    padding: 20,
+   // backgroundColor:'grey',
   },
-  seat: {
-    width: 80,
-    height: 80,
-    backgroundColor: '#ffd700',
-    borderWidth: 2,
-    borderColor: '#000',
-    borderRadius: 50,
-    margin: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  playerName: {
-    fontSize: 18,
-    color: '#000',
+  gridContainer: {
+    flex: 1,
+    backgroundColor:'blue',
+
   },
 });
-
-export default Table;
