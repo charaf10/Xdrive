@@ -1,0 +1,14 @@
+
+Objectifs de l'Application
+Remplacer les Entreprises de Livraison Sous-Traitantes :
+
+Créer une plateforme qui permet aux entreprises (comme les compagnies de pièces auto) et aux particuliers de trouver et recruter des chauffeurs pour des shifts prédéfinis (au lieu de par course).
+Offrir de la Flexibilité et de la Transparence :
+
+Permettre aux entreprises et particuliers de spécifier les critères de shift, tels que la durée (nombre d'heures), le type de livraison (courte, longue, moyenne), et d'autres spécifications.
+Simplifier le Processus de Recrutement :
+
+Faciliter le processus de recherche, sélection et recrutement de chauffeurs qualifiés via une application conviviale.
+Améliorer l'Efficacité et la Gestion des Shifts :
+
+Optimiser la gestion des shifts de livraison en fournissant des outils pour planifier, suivre et gérer les shifts de manière efficace.

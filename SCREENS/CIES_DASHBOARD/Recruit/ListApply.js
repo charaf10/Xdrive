@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 
 import axios from 'axios';
-import myip from '../../../IP'
+import {myip, mydbAPI} from '../../../IP'
 
 
 
@@ -31,9 +31,17 @@ const Item = ({item, onPress, backgroundColor, textColor}) => (
   </TouchableOpacity>
 );
 
- const ListApply = ({route}) => {
+const ListApply = ({route, navigation}) => {
 
   const { id } = route.params;
+
+  console.log("id apply: " + route);
+  
+
+  //const { param1, param2 } = route.params; // Destructure the passed parameters
+  //let id = param2;
+
+
   const [data, setData] = useState([]);
   const [selectedId, setSelectedId] = useState();
 
@@ -62,6 +70,19 @@ useEffect(() => {
 }, []);
 
 
+const ShowFiche = (item) =>{
+
+  console.log("item id: " + id);
+  setSelectedId(id)
+
+  navigation.navigate("show_info_driver", {worker: item});
+
+}
+
+
+
+
+
 const renderItem = ({item}) => {
   const backgroundColor = item.id === selectedId ? '#6e3b6e' : '#f9c2ff';
   const color = item.id === selectedId ? 'white' : 'black';
@@ -70,7 +91,7 @@ const renderItem = ({item}) => {
     <View>
     <Item
       item={item}
-      onPress={() => setSelectedId(item.id)}
+      onPress={() => ShowFiche(item)}
       backgroundColor={backgroundColor}
       textColor={color}
     />

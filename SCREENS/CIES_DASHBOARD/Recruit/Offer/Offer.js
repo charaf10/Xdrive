@@ -9,8 +9,8 @@ import Pressable_CreateOffer from '../../../../COMPONENTS/COM_UTILS/BUTTON/Press
 
 export default function RecruitScreen({ route, navigation }) {
   
-  const { id } = route.params;
-  //const  id  = 16;
+  //const { id } = route.params;
+  const  id  = 58;
 /*
   console.log("username:", username);
   console.log("password:", password);

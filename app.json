@@ -3,6 +3,10 @@
     "name": "driver",
     "slug": "driver",
     "version": "1.0.0",
+    "platforms": ["ios", "android", "web"],
+    "permissions": [
+      "location" 
+    ],
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -15,12 +19,17 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "We use your location to show you relevant information on the map."
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#ffffff",
+        "permissions": ["ACCESS_FINE_LOCATION"]
+
       }
     },
     "web": {

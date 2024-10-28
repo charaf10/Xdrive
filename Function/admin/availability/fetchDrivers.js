@@ -1,0 +1,17 @@
+import axios from 'axios';
+//import myip from '../../../IP';
+//import mydbAPI from '../../../IP';
+import { myip, mydbAPI } from "../../IP"; // Importez avec les accolades
+
+const fetchDrivers = async (setDrivers) => {
+  try {
+    const response = await axios.get(`http://${myip}:80/${mydbAPI}/get_alldrivers.php`);
+    if (response.data) {
+      setDrivers(response.data);
+    }
+  } catch (error) {
+    console.error('Error fetching drivers:', error);
+  }
+};
+
+export default fetchDrivers;

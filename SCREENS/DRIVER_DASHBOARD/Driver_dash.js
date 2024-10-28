@@ -29,8 +29,8 @@ export default function Driver_dash({ route, navigation }) {
   const { id, username, password } = route.params;
   //const { id  } = 28;
 
-  /*console.log("username:", username);
-  console.log("password:", password);*/
+  /*console.log("username:", username);*/
+  console.log("id:", id);
 
 
     const separe = <br/>

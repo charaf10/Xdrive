@@ -5,7 +5,7 @@ Modal,FlatList,SafeAreaView,StatusBar,StyleSheet,Text,TouchableOpacity,View,} fr
 
 /*Outils */
 import axios from 'axios';
-import myip from '../../../IP'
+import {myip, mydbAPI} from '../../../IP'
 
 /* Composants */
 import Long_press from '../../../COMPONENTS/COM_VIEWS/CIES/Long_press_offer'

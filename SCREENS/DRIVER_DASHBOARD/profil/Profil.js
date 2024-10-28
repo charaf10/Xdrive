@@ -5,7 +5,7 @@ Modal,FlatList,SafeAreaView,StatusBar,StyleSheet,Text,TouchableOpacity,View,} fr
 
 /*Outils */
 import axios from 'axios';
-import myip from '../../../IP'
+import {myip, mydbAPI} from '../../../IP'
 
 import { fetchListProfil } from '../../../Lakay_function/RefreshListProfil';
 
@@ -24,6 +24,9 @@ import { fetchListProfil } from '../../../Lakay_function/RefreshListProfil';
     const [vehicule, setVehicule] = useState([]);
     const [shift, setShift] = useState([]);
     const [location, setLocation] = useState([]);
+
+    console.log('id::: ' + id);
+    
 
     
 

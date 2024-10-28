@@ -5,7 +5,7 @@ import * as React from 'react';
 
 /*Import for database */
 import axios from 'axios';
-import myip from '../../IP';
+import {myip, mydbAPI} from '../../IP';
 
 
 /* IMPORTATION DES OUTILS DONT CETTE SCREEN A BESOIN (2 INPUTS (USER,PASS) ET 2 BUTTONS (LOGIN-SIGNUP)) */
@@ -51,6 +51,8 @@ export default function LOGIN({navigation}){
     .then((response) => {
         let result = response.data[0].Message
         let resultId = response.data[1].MessageId
+        console.log("result : " + result)
+        console.log("resultId :" + resultId)
         //let resultIdTesting = 16
         if (result == "correct") {
             //alert("id: " + resultId);

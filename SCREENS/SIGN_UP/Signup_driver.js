@@ -4,7 +4,7 @@ import * as React from 'react';
 
 /*Import for database */
 import axios from 'axios';
-import myip from '../../IP';
+import {myip, mydbAPI} from '../../IP';
 
 // `firstname`, `lastname`, `username`, `password`, `birth`, `address`, `city`, `coutry` , `licence` , `email`, `phone` , `sign`
 

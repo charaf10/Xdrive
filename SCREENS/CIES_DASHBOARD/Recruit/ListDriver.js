@@ -10,20 +10,9 @@ import {
 } from 'react-native';
 
 import axios from 'axios';
-import myip from '../../../IP'
+import {myip, mydbAPI} from '../../../IP'
 
 
-
-
-const Testt =  ({item}) =>{
-
-  const [data2, setData2] = useState([]);
-
-
-
-//alert(item.firstname)
-
-};
 
 const Item = ({item, onPress, backgroundColor, textColor}) => (
   <TouchableOpacity onPress={onPress} style={[styles.item, {backgroundColor}]}>
@@ -31,11 +20,13 @@ const Item = ({item, onPress, backgroundColor, textColor}) => (
       <Text style={[styles.id, {color: textColor}]}>{item.id}</Text>
       <Text> </Text>
       <Text style={[styles.title, {color: textColor}]}>{item.firstname}</Text>
+      <Text> </Text>
+      <Text style={[styles.title, {color: textColor}]}>{item.lastname}</Text>
     </Text>
   </TouchableOpacity>
 );
 
- const ListDriver = () => {
+  function ListDriver ({navigation}) {
 
 
   const [data, setData] = useState([]);
@@ -61,25 +52,32 @@ const Item = ({item, onPress, backgroundColor, textColor}) => (
   }, []);
 
 
+const ShowFiche = (id) =>{
+
+  console.log("item id: " + id);
+  setSelectedId(id)
+
+  navigation.navigate("Details_driver", {id: id});
+
+}
 
 
 
   const [selectedId, setSelectedId] = useState();
 
   const renderItem = ({item}) => {
-    const backgroundColor = item.id === selectedId ? '#6e3b6e' : '#f9c2ff';
+    const backgroundColor = item.id === selectedId ? '#3C3731' : '#A0886A';
     const color = item.id === selectedId ? 'white' : 'black';
 
     return (
       <View>
       <Item
         item={item}
-        onPress={() => setSelectedId(item.id)}
+        onPress={() => ShowFiche(item.id)}
         backgroundColor={backgroundColor}
         textColor={color}
       />
       
-      <Testt item = {item} />
       </View>
     );
   };
@@ -105,6 +103,7 @@ const styles = StyleSheet.create({
     padding: 20,
     marginVertical: 8,
     marginHorizontal: 16,
+    borderRadius:10,
   },
   title: {
     fontSize: 15,
@@ -112,7 +111,7 @@ const styles = StyleSheet.create({
   id: {
     
     fontSize: 20,
-    marginRight:100,
+    //marginRight:100,
     //backgroundColor: 'grey',
     borderRadius:50
   },
