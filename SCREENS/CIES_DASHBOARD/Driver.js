@@ -1,3 +1,5 @@
+
+
 import React from 'react';
 import { View, Text, Image, StyleSheet  } from 'react-native';
 
@@ -5,6 +7,9 @@ const DriverProfile = ({ route }) => {
 
   
   const { worker } = route.params;  // Vérifiez que worker est bien passé en paramètre
+
+  console.log(worker);
+  
 
   // Ajoutez cette condition pour vérifier si worker est bien défini avant de l'utiliser
   if (!worker) {
@@ -16,15 +21,19 @@ const DriverProfile = ({ route }) => {
   }
 
   return (
-    <View style={styles.container}>
-      <Image source={{ uri: worker.IdDriver }} style={styles.avatar} />
-      <View style={styles.infoContainer}>
-        <Text style={styles.name}>{worker.FirstName} {worker.LastName}</Text>
-        <Text style={styles.email}>{worker.email}</Text>
-        <Text style={styles.phone}>{worker.PhoneNumber}</Text>
-        <Text style={styles.address}>{worker.VehicleType}</Text>
-      </View>
-    </View>
+<View style={styles.container}>
+  <Image source={{ uri: worker.IdDriver }} style={styles.avatar} />
+  <View style={styles.infoContainer}>
+    <Text style={styles.name}>{worker.FirstName} {worker.LastName}</Text>
+    <Text style={styles.email}>{worker.email}</Text>
+    <Text style={styles.phone}>{worker.PhoneNumber}</Text>
+    <Text style={styles.address}>{worker.address}</Text>
+    <Text style={styles.vehicleType}>Type de véhicule: {worker.VehicleType}</Text>
+    <Text style={styles.startDate}>Date de début: {worker.StartDate}</Text>
+    <Text style={styles.rating}>Évaluation: {worker.Rating}</Text>
+    <Text style={styles.performance}>Performance: {worker.Performance}%</Text>
+  </View>
+</View>
 
   );
 };

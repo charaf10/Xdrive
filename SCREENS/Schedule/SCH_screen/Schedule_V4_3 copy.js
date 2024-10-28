@@ -20,7 +20,7 @@ import {
   addDays,
   subDays,
 } from 'date-fns';
-import myip from '../../../IP';
+import {myip, mydbAPI} from '../../../IP';
 import Delete_Schedule_Modal from "../../../Component/Modal/Delete_Schedule_Modal";
 import SearchBar from "../../../Component/SearchBar/searchBar";
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -265,6 +265,7 @@ const ScheduleV4_3 = () => {
                       { width: cellWidth },
                       {
                         backgroundColor: scheduledTemplate ? scheduledTemplate.Color : 'transparent',
+                        //borderColor: scheduledTemplate ? scheduledTemplate.Color : 'transparent',
                         opacity: schedule ? (schedule.Status === '1' ? 1 : 0.5) : 1,
                       },
                     ]}

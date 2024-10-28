@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import myip from '../../../IP';
+import {mydbAPI, myip} from '../../../IP';
 
 function Select({ selectedValue, onChange }) {
   const [options, setOptions] = useState([]);
@@ -35,7 +35,8 @@ function Select({ selectedValue, onChange }) {
   };
 
   return (
-    <select placeholder='choose...' style={customStyles} value={selectedValue} onChange={handleSelectChange}>
+    <select  style={customStyles} value={selectedValue} onChange={handleSelectChange}>
+      <option value="" disabled>Select a shift</option> {/* Placeholder */}
       {options.map(option => (
         <option key={option.id} value={option.id}>
           {option.name}

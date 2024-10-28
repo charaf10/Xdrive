@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Button, TextInput, Alert } from 'react-native';
 import axios from 'axios'; // Pas besoin de { all }
-import myip from '../../../../IP';
+//import myip from '../../../../IP';
+import { myip, mydbAPI } from "../../../IP"; // Importez avec les accolades
+
+
 //import { updateDriver } from '../../../Function/admin/fun_admin';
 //import { deleteDriver } from '../../../Function/admin/fun_admin';
 //import { ValidateEmail } from '../../../Function/fun_home'; // Importez la fonction depuis le fichier api.js

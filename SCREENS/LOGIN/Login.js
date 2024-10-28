@@ -8,7 +8,7 @@
  
  /*Import for database */
  import axios from 'axios';
- import myip from '../../IP';
+ import {myip, mydbAPI} from '../../IP';
  
  
  /* IMPORTATION DES OUTILS DONT CETTE SCREEN A BESOIN (2 INPUTS (USER,PASS) ET 2 BUTTONS (LOGIN-SIGNUP)) */

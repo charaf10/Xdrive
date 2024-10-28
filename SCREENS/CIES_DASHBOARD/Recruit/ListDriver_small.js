@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 
 import axios from 'axios';
-import myip from '../../../IP'
+import {myip, mydbAPI} from '../../../IP'
 
 
 

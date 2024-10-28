@@ -1,6 +1,6 @@
 /*Import for database */
 import axios from 'axios';
-import myip from "../IP";
+import {mydbAPI, myip} from "../IP";
 
     // Fonction qui multiplie deux nombres
     export const Bonjour = (name) => {
@@ -15,7 +15,7 @@ import myip from "../IP";
 export const Loginadmin = async (username, password) => {
 
   try {
-    const response = await axios.post('http://' + myip + ':80/api_schedule/admin/Login.php', {
+    const response = await axios.post('http://' + myip + ':80/' + mydbAPI + '/admin/Login.php', {
       username: username,
       password: password,
     });
@@ -33,7 +33,7 @@ export const Loginadmin = async (username, password) => {
 export const Logindriver = async (username, password) => {
 
   try {
-    const response = await axios.post('http://' + myip + ':80/api_schedule/admin/Login_Driver.php', {
+    const response = await axios.post('http://' + myip + ':80/' + mydbAPI + '/admin/Login_Driver.php', {
       username: username,
       password: password,
     });

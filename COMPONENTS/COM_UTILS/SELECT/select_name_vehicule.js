@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import {StyleSheet , styles} from 'react-native';
+
 import axios from 'axios';
-import myip from '../../../IP';
+import {mydbAPI, myip} from '../../../IP';
 
 function Select({ selectedValue, onChange }) {
   const [options, setOptions] = useState([]);
@@ -27,19 +29,21 @@ function Select({ selectedValue, onChange }) {
   };
 
   const customStyles = {
+    
     width:'100%',
     height: 30,
-    borderColor: 'gray',
+    borderColor: 'grey',
     borderWidth: 1,
     borderRadius: 5,
   };
 
   return (
-    <select style={customStyles} value={selectedValue} onChange={handleSelectChange}>
-      
+    <select style={customStyles } value={selectedValue} onChange={handleSelectChange}>
+      <option value="" disabled>Select a vehicle</option> {/* Placeholder */}
+
       {options.map(option => (
         <option key={option.id} value={option.id}>
-          {option.name}
+          {option.vehicle_type}
         </option>
       ))}
     </select>

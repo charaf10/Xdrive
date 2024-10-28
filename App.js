@@ -27,9 +27,10 @@ import Entreprise_dash from './SCREENS/CIES_DASHBOARD/Entreprise_dash';
 import RecruitScreen from './SCREENS/CIES_DASHBOARD/Recruit/RecruitScreen';
 import ManageScreen from './SCREENS/CIES_DASHBOARD/Manage/ManageScreen';
 import FlotteScreen from './SCREENS/CIES_DASHBOARD/Flotte/FlotteScreen';
-import MapsEntreprise from './SCREENS/CIES_DASHBOARD/maps/Maps';
+//import MapsEntreprise from './SCREENS/CIES_DASHBOARD/maps/Maps';
 import SettingScreen from './SCREENS/CIES_DASHBOARD/Settings/SettingScreen';
 import WorkerScreenBaseCards from "./SCREENS/CIES_DASHBOARD/ScreenBaseCards";
+import show_info_driver from "./SCREENS/CIES_DASHBOARD/Driver";
 
 
 /* Screen offer  */
@@ -60,9 +61,11 @@ import Offer_list from './SCREENS/DRIVER_DASHBOARD/FindWork/ListOfferDriver';
 import Create_profil from './SCREENS/DRIVER_DASHBOARD/profil/Create_profil';
 import Maps from './SCREENS/DRIVER_DASHBOARD/maps/Maps';
 
+import dashboard from './SCREENS/CIES_DASHBOARD/Dash/dashboard';
+import Manage from './SCREENS/CIES_DASHBOARD/Dash/Manage';
 
 /* SCHEDULE */
-import dashboard from './SCREENS/Schedule/SCH_screen/dashboard';
+import dashboardSchedule from './SCREENS/Schedule/SCH_screen/dashboard';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -74,7 +77,7 @@ const App = () => {
   return (
     
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="MapsEntreprise"> 
+        <Stack.Navigator initialRouteName="dashboard"> 
 
         <Stack.Screen name="Test" component={Test} />
         <Stack.Screen name="Test_2" component={Test2} />
@@ -91,6 +94,8 @@ const App = () => {
           <Stack.Screen name="Signup_driver" component={Signup_driver} />
           <Stack.Screen name="Signup_entreprise" component={Signup_entreprise} />
            {/* ENTREPRISE DASHBOARD */}
+           <Stack.Screen name="dashboard" component={dashboard} options={{ headerShown: false }} />
+           <Stack.Screen name="Manage" component={Manage}  />
            <Stack.Screen name="WorkerScreenBaseCards" component={WorkerScreenBaseCards}  />
           <Stack.Screen name="Entreprise_dash" component={Entreprise_dash} />
           <Stack.Screen name="RecruitScreen" component={RecruitScreen} />
@@ -108,8 +113,9 @@ const App = () => {
           <Stack.Screen name="ListDriver" component={ListDriver} />
           <Stack.Screen name="Details_driver" component={Details_driver} />
           <Stack.Screen name="driverProfil" component={driverProfil} />
+          <Stack.Screen name="show_info_driver" component={show_info_driver} />
           
-          <Stack.Screen name="MapsEntreprise" component={MapsEntreprise} />
+
           
 
           <Stack.Screen name="ListDriverSmall" component={ListDriverSmall} />
@@ -117,7 +123,7 @@ const App = () => {
           <Stack.Screen name="Section" component={Section} />
 
 
-          <Stack.Screen name="dashboard" component={dashboard} />
+          <Stack.Screen name="dashboardSchedule" component={dashboardSchedule} />
 
 
            {/* Driver DASHBOARD */}

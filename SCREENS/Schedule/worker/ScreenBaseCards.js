@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 import ListWorkers from '../../dash_admin/worker/ListWorkers2'; // Assurez-vous d'importer votre composant correctement
+import Details_driver from '../../dash_admin/worker/Details_driver'; // Assurez-vous d'importer votre composant correctement
 
 
 const DashboardScreen = ({ navigation }) => {
@@ -71,6 +72,12 @@ const DashboardScreen = ({ navigation }) => {
               {card.title === 'Drivers' && (
                 <View style={styles.dateTimeContainer}>
                   <ListWorkers />
+                </View>
+              )}
+
+              {card.title === 'Settinga' && (
+                <View style={styles.dateTimeContainer}>
+                  <Details_driver />
                 </View>
               )}
             </TouchableOpacity>

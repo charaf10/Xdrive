@@ -17,7 +17,7 @@ import Grid1 from '../../SCREENS/CIES_DASHBOARD/Flotte/Grille';
 import Section from '../../COMPONENTS/FUNCT/Section';
 import Post_offer from '../../SCREENS/CIES_DASHBOARD/Recruit/Offer/PostOffer';
 import Flotte from '../../SCREENS/CIES_DASHBOARD/Flotte/FlotteScreen';
-import Maps from '../../SCREENS/CIES_DASHBOARD/maps/Maps';
+//import Maps from '../../SCREENS/CIES_DASHBOARD/maps/Maps';
 import dashboard from '../../SCREENS/Schedule/SCH_screen/dashboard';
 import Base from '../../SCREENS/CIES_DASHBOARD/ScreenBaseCards';
 
@@ -27,8 +27,8 @@ const Tab = createBottomTabNavigator();
 
 export default function Entreprise_dash({ route, navigation }) {
   
-  const { id, username, password } = route.params;
-  //const { id } = {id:58};
+  //const { id, username, password } = route.params;
+  const { id } = {id:58};
 
   /*console.log("username:", username);
   console.log("password:", password);*/
@@ -44,7 +44,7 @@ export default function Entreprise_dash({ route, navigation }) {
       <Tab.Screen name="Section" component={Section} initialParams={{ id: id }}/>
       <Tab.Screen name="Post offer" component={Post_offer}  initialParams={{ id: id }}/>
       <Tab.Screen name="Flotte" component={Flotte}  options={{ tabBarBadge: 1 }}/>
-      <Tab.Screen name="Maps" component={Maps}  options={{ tabBarBadge: 3 }}/>
+
       <Tab.Screen name="dashboard" component={dashboard}  options={{ tabBarBadge: 2 }}/>
       <Tab.Screen name="Base" component={Base} />
     </Tab.Navigator>

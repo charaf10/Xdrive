@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Button, TextInput, Alert } from 'react-native';
 import axios from 'axios'; // Pas besoin de { all }
-import myip from '../../../IP';
+//import myip from '../../../IP';
 import { updateCycle } from '../../../Function/admin/fun_admin';
 import { deleteCycle } from '../../../Function/admin/fun_admin';
 //import { ValidateTimeOut } from '../../../Function/fun_home'; // Importez la fonction depuis le fichier api.js

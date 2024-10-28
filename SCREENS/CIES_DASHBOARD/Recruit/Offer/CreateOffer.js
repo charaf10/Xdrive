@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 
 /*Import for database */
 import axios from 'axios';
-import myip from '../../../../IP';
+import {myip, mydbAPI} from '../../../../IP';
 
 
 /* IMPORTATION DES OUTILS DONT CETTE SCREEN A BESOIN (2 INPUTS (USER,PASS) ET 2 BUTTONS (LOGIN-SIGNUP)) */
@@ -23,12 +23,19 @@ import Button_basic from '../../../../COMPONENTS/COM_UTILS/BUTTON/Button_create_
 
 import Com_select_vehicule from '../../../../COMPONENTS/COM_UTILS/SELECT/select_name_vehicule';
 import Com_select_shift from '../../../../COMPONENTS/COM_UTILS/SELECT/select_name_shift';
+import { useNavigation } from '@react-navigation/native';
 
 // title desc datestart dateend schedule nbdriver identreprise status
 
 
 
-export default function CreateOffer({route, navigation}){
+export default function CreateOffer({route}){
+
+    const { param1, param2 } = route.params; // Destructure the passed parameters
+    //const navigation = useNavigation();
+    let test = route;
+
+    
 
     /*VARIABLE DE RECUPERATION DES DATAS DE SIGNUP (FIRSTNAME, LASTNAME, EMAIL, USERNAME & PASSWORD) */
     const [title, setTitle] = React.useState('');
@@ -40,14 +47,13 @@ export default function CreateOffer({route, navigation}){
 
     const [selectedVehicule, setSelectedVehicule] = useState('');
     const [selectedShift, setSelectedShift] = useState('');
-
-
-
+    
 
     const {identreprise} = route.params;
     //const {identreprise} = {identreprise:58};
     const [status, setStatus] = React.useState('off');
 
+    console.log("identreprise_createOffer: " + identreprise);
 
     const [data, setData] = useState([]);
 
@@ -92,11 +98,11 @@ export default function CreateOffer({route, navigation}){
         .then((response) => {
             console.log(response);
             alert("Insert Success");
-            //navigation.navigate("PostOffer", {identreprise: identreprise});
+            //navigation.navigate("PostOffer", {route: route});
 
 
 /*================================REFRESH DATA==================================================== */
-          axios.post('http://' + myip +':80/link/entreprise/SelectListOffer.php', {id_utilisateur : identreprise})
+    /*      axios.post('http://' + myip +':80/link/entreprise/SelectListOffer.php', {id_utilisateur : identreprise})
           .then(response => {
             //setData(response.data);
     
@@ -112,8 +118,13 @@ export default function CreateOffer({route, navigation}){
           .catch(error => {
             console.error(error);
           });
+          */
 /*================================REFRESH DATA==================================================== */
-        navigation.navigate("PostOffer", {identreprise : identreprise});//OfferScreen
+ // probleme actuel
+ //const params = { param1: navigation, param2: identreprise }; // Replace with actual parameters
+
+ //navigation.navigate("PostOffer", {route : route});//OfferScreen
+ //navigation.navigate("PostOffer", {route: params });
 
         })
         
@@ -223,6 +234,8 @@ export default function CreateOffer({route, navigation}){
                 location={location}
                 status={status}
             />
+
+
 
             let leRetour = 
             <View style={styles.container}>

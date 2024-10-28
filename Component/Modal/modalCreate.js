@@ -27,11 +27,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor:'grey',
+    backgroundColor:'transparent',
     //backgroundColor: 'rgba(0, 0, 0, 0.7)',
   },
   modalContent: {
-    backgroundColor: 'white',
+    backgroundColor: 'grey',
     padding: 20,
     borderRadius: 10,
     width:'40%',

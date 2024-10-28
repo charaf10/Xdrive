@@ -3,6 +3,10 @@
     "name": "driver",
     "slug": "driver",
     "version": "1.0.0",
+    "platforms": ["ios", "android", "web"],
+    "permissions": [
+      "location" 
+    ],
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",

@@ -2,7 +2,9 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, StyleSheet, TouchableOpacity, Alert, Image  } from 'react-native';
 import axios, { all } from 'axios';
-import myip from '../../../IP';
+//import myip from '../../../IP';
+import { myip, mydbAPI } from "../../../IP"; // Importez avec les accolades
+
 import MaModalCreate  from '../../../Component/Modal/modalCreate';
 import MaModalUpdateDelete  from '../../../Component/Modal/modalUpdateDelete';
 import Create_driver from '../../../Component/Screen/admin/create_driver'; // Assurez-vous d'importer votre composant correctement
@@ -59,7 +61,7 @@ const DriversListPage = ({navigation}) => {
     const fetchAllDrivers = async () => {
       //console.log("je suis la page manage_driver ");
       try {
-        const response = await axios.get('http://' + myip + ':80/api_schedule/get_alldrivers.php');
+        const response = await axios.get(`http://${myip}:80/${mydbAPI}/get_alldrivers.php`);
         setDrivers(response.data);
         setFiltredDriver(response.data)
 

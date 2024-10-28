@@ -1,6 +1,9 @@
 import axios from 'axios';
 import { format } from 'date-fns';
-import myip from '../../../IP';
+//import myip from '../../../IP';
+//import mydbAPI from '../../../IP';
+import { myip, mydbAPI } from "../../../IP"; // Importez avec les accolades
+
 import fetchAvailabilities from './fetchAvailabilities';
 
 const updateAvailability = async (driverId, day, newListCycle, setExistingAvailabilities) => {
@@ -12,7 +15,7 @@ const updateAvailability = async (driverId, day, newListCycle, setExistingAvaila
   };
 
   try {
-    const response = await axios.post(`http://${myip}:80/api_schedule/update_availability.php`, data);
+    const response = await axios.post(`http://${myip}:80/${mydbAPI}/update_availability.php`, data);
     console.log('Availability updated successfully!', response.data);
     fetchAvailabilities(setExistingAvailabilities);
   } catch (error) {

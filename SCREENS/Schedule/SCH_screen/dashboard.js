@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
   },
   menu: {
     flexDirection: 'row',  // Alignement horizontal pour les éléments du menu
-    backgroundColor: 'black',
+    backgroundColor: 'grey',
     padding: 16,
     justifyContent: 'center',  // Centre les éléments du menu
     borderRadius: 10,  // Coins arrondis pour le menu

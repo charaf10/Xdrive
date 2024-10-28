@@ -3,7 +3,7 @@ import { View, Text, TextInput, Button, StyleSheet, TouchableOpacity } from 'rea
 //import { ColorPicker } from 'react-native-color-picker';
 
 import { createCycle } from '../../../Function/admin/fun_admin';
-import { createCycle1 } from '../../../../f';
+//import { createCycle1 } from '../../../../f';
 
 const CreateCyclePage = () => {
   const [generatedTemplateId, setGeneratedTemplateId] = useState('');

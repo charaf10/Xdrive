@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { format } from 'date-fns';
-import myip from '../../../IP';
+//import myip from '../../../IP';
+//import mydbAPI from '../../../IP';
+import { myip, mydbAPI } from "../../../IP"; // Importez avec les accolades
 import generateID from './generateID';
 
 const createOrUpdateBlock = async (action, setExistingBlocks, ...params) => {
@@ -8,7 +10,7 @@ const createOrUpdateBlock = async (action, setExistingBlocks, ...params) => {
     let response;
     if (action === 'create') {
       const [date, templateId, quantity] = params;
-      response = await axios.post(`http://${myip}:80/api_schedule/add_block.php`, {
+      response = await axios.post(`http://${myip}:80/${mydbAPI}/add_block.php`, {
         BlockId: generateID(),
         TemplateId: templateId,
         Date: format(date, 'yyyy-MM-dd'),
@@ -18,7 +20,7 @@ const createOrUpdateBlock = async (action, setExistingBlocks, ...params) => {
     } else if (action === 'update') {
       const [blockId, newQuantity] = params;
       const quantityToPass = newQuantity != null ? newQuantity : 0;
-      response = await axios.post(`http://${myip}:80/api_schedule/update_block.php`, {
+      response = await axios.post(`http://${myip}:80/${mydbAPI}/update_block.php`, {
         BlockId: blockId,
         NewQuantity: quantityToPass,
       });
@@ -26,7 +28,7 @@ const createOrUpdateBlock = async (action, setExistingBlocks, ...params) => {
     }
 
     // Fetch the updated blocks
-    const fetchResponse = await axios.get(`http://${myip}:80/api_schedule/get-all-block.php`);
+    const fetchResponse = await axios.get(`http://${myip}:80/${mydbAPI}/get-all-block.php`);
     if (fetchResponse.data) {
       setExistingBlocks(fetchResponse.data);
     }

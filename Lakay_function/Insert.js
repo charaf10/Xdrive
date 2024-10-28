@@ -1,5 +1,5 @@
 import axios from 'axios';
-import myip from '../IP';
+import {mydbAPI, myip} from '../IP';
 
 
 

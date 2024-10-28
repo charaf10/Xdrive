@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import ListWorkers from '../../SCREENS/CIES_DASHBOARD/Recruit/ListDriver'; // Assurez-vous d'importer votre composant correctement
+import Details_driver from '../../SCREENS/CIES_DASHBOARD/Recruit/Details_driver'; // Assurez-vous d'importer votre composant correctement
 
 
 const DashboardScreen = ({ navigation }) => {
@@ -70,6 +71,12 @@ const DashboardScreen = ({ navigation }) => {
               {card.title === 'Drivers' && (
                 <View style={styles.dateTimeContainer}>
                   <ListWorkers />
+                </View>
+              )}
+
+              {card.title === 'Settingsa' && (
+                <View style={styles.dateTimeContainer}>
+                  <Details_driver />
                 </View>
               )}
             </TouchableOpacity>
@@ -183,7 +190,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 8,
       backgroundColor: 'lightblue',
-      transform: [{ perspective: 1000 }, { rotateY: '10deg' }],
+      //transform: [{ perspective: 1000 }, { rotateY: '10deg' }],
     },
     cardStyleInfos: {
       position:'absolute',
@@ -204,7 +211,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 8,
       backgroundColor: 'lightcoral',
-      transform: [{ perspective: 1000 }, { rotateY: '-10deg' }],
+      //transform: [{ perspective: 1000 }, { rotateY: '-10deg' }],
     },
     cardStyleSettings: {
       position:'absolute',
@@ -216,7 +223,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 8,
       backgroundColor: 'lightblue',
-      transform: [{ perspective: 1000 }, { rotateY: '10deg' }],
+      //transform: [{ perspective: 1000 }, { rotateY: '10deg' }],
     },
     cardStyleSettingsa: {
       position:'absolute',
@@ -224,7 +231,7 @@ const styles = StyleSheet.create({
       left:'66.6%',
       //top:'',
       backgroundColor: 'lightyellow',
-      transform: [{ perspective: 1000 }, { rotateY: '-10deg' }],
+      //transform: [{ perspective: 1000 }, { rotateY: '-10deg' }],
       elevation: 3,
       shadowColor: '#000',
       shadowOffset: { width: 0, height: 2 },
@@ -239,7 +246,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 8,
       backgroundColor: 'lightcoral',
-      transform: [{ perspective: 1000 }, { rotateY: '-15deg' }],
+      //transform: [{ perspective: 1000 }, { rotateY: '-15deg' }],
     },
 });
 

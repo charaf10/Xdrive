@@ -8,7 +8,7 @@ import * as React from 'react';
 
 /*Import for database */
 import axios from 'axios';
-import myip from '../../../../IP';
+import {myip, mydbAPI} from '../../../../IP';
 
 
 

@@ -2,7 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import axios, { all } from 'axios';
-import myip from '../../../IP';
+//import myip from '../../../IP';
+import { myip, mydbAPI } from "../../../IP"; // Importez avec les accolades
 
 import MaModalCreate  from '../../../Component/Modal/modalCreate';
 import MaModalUpdateDelete  from '../../../Component/Modal/modalUpdateDelete';
@@ -74,7 +75,7 @@ const CyclesListPage = ({navigation}) => {
     const fetchAllCycles = async () => {
       //console.log("je suis la page manage_Cycle ");
       try {
-        const response = await axios.get('http://' + myip + ':80/api_schedule/get_allCycles.php');
+        const response = await axios.get(`http://${myip}:80/${mydbAPI}/get_allCycles.php`);
         setCycles(response.data);
         setFiltredCycle(response.data)
 

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Picker, Alert } from 'react-native';
 import axios, { all } from 'axios';
-import myip from '../../../../IP';
+//import myip from '../../../../IP';
+import { myip, mydbAPI } from "../../../IP"; // Importez avec les accolades
 
 import { createDriver } from '../../../Function/admin/fun_admin'; // Importez la fonction depuis le fichier api.js
 import { ValidateEmail } from '../../../Function/fun_home'; // Importez la fonction depuis le fichier api.js
@@ -27,7 +28,7 @@ const CreateDriverPage = () => {
 
     console.log("divisions : " + division);
     try {
-      const response = await axios.get('http://' + myip + ':80/api_schedule/get_all_divisions.php');
+      const response = await axios.get(`http://${myip}:80/${mydbAPI}/get_all_divisions.php`);
       setDivision(response.data);
       console.log("responsefetchAllDivisions : " + response);
 
