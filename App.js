@@ -6,6 +6,8 @@ import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { ApiProvider } from './ApiContext';
+
 
 /* Imported Fichier JS DE TEST */
 import Test from './Test/Test';
@@ -75,9 +77,8 @@ const App = () => {
 
 
   return (
-    
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="dashboard"> 
+        <Stack.Navigator initialRouteName="dashboardSchedule"> 
 
         <Stack.Screen name="Test" component={Test} />
         <Stack.Screen name="Test_2" component={Test2} />
@@ -205,6 +206,7 @@ const App = () => {
 
 
       </NavigationContainer>
+
   );
 }
 

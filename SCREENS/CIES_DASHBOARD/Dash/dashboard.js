@@ -23,12 +23,12 @@ const Dashboard = ({navigation, route}) => {
 
 
  // const {identreprise} = route.params;
-  //const {id} = route.params;
+  const {id} = route.params;
 
-  const  id = 58;
+  //const  id = 58;
 
 
-  console.log("identreprise",id);
+  console.log("identreprisessssss",id);
   
 
 
@@ -39,7 +39,7 @@ const Dashboard = ({navigation, route}) => {
   };
 
   const ScheduleComponent = () => {
-    return <DashboardSchedule/>;
+    return <DashboardSchedule route={route}/>;
   };
 
   /*const ManageComponent = () => {

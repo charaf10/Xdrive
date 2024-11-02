@@ -7,14 +7,14 @@ import Cycle from "./Manage_Cycle";
 */
 
 import Manage_driver from "./manage_driver";
-import Availability from "./Availability copy";
-import Schedule from "./Schedule_V4_3 copy";
-import Block from "./Block_V1 copy";
+import Availability from "./Availability";
+import Schedule from "./Schedule";
+import Block from "./Block";
 import Cycle from "./Manage_Cycle";
 
 
 
-const Dashboard = ({navigation, driver}) => {
+const Dashboard = ({navigation, driver, route}) => {
   const [currentComponent, setCurrentComponent] = useState(null);
 
   const renderComponent = (component) => {
@@ -33,7 +33,7 @@ const Dashboard = ({navigation, driver}) => {
   };
 
   const CycleComponent = () => {
-    return <Cycle/>;
+    return <Cycle route={route}/>;
 
   };
 

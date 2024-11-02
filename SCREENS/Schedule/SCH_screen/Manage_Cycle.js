@@ -1,9 +1,7 @@
 // CyclesListPage.js
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, StyleSheet, TouchableOpacity, Alert } from 'react-native';
-import axios, { all } from 'axios';
-//import myip from '../../../IP';
-import { myip, mydbAPI } from "../../../IP"; // Importez avec les accolades
+import { configureAPI } from '../../../IP';
 
 import MaModalCreate  from '../../../Component/Modal/modalCreate';
 import MaModalUpdateDelete  from '../../../Component/Modal/modalUpdateDelete';
@@ -14,21 +12,25 @@ import Show_info_Cycle from '../../../Component/Screen/admin/show_info_cycle'; /
 import SearchBar from "../../../Component/SearchBar/searchBar";
 
 
-const CyclesListPage = ({navigation}) => {
+const CyclesListPage = ({navigation, route}) => {
 
-  //console.log("je suius le manage_Cycle");
+
+
+  //const {id} = route.params;
+  //let identreprise = id
+
+  const  identreprise = 58;
 
     /*=========================================VARIABLES=========================================== */
 
   const [selectedTemplateId, setSelectedTemplateId] = useState(null);
-
-
   const [filtredCycle, setFiltredCycle] = useState(null);
   const [Cycles, setCycles] = useState([]);
   const [selectedCycle, setSelectedCycle] = useState(null);
   const [modalCreateVisible, setmodalCreateVisible] = useState(false);
   const [modalUpdateDelete, setmodalUpdateDelete] = useState(false);
   const [compo, setCompo] = useState('');
+
 
     /*================================ACTIVATE/DESACTIVATE MODAL================================= */
 
@@ -43,7 +45,7 @@ const CyclesListPage = ({navigation}) => {
   const closeCreateModal = () => {
     console.log("clicker");
     setmodalCreateVisible(false);
-    fetchAllCycles();
+    fetchAllCycles(identreprise);
   };
 
   const openUpdateDeleteModal = () => {
@@ -54,13 +56,13 @@ const CyclesListPage = ({navigation}) => {
 
   const closeUpdateDeleteModal = async() => {
     setmodalUpdateDelete(false);
-    fetchAllCycles();
+    fetchAllCycles(identreprise);
     setSelectedTemplateId(null);
   };
 
 
   const refresh = async() => {
-    fetchAllCycles();
+    fetchAllCycles(identreprise);
     setSelectedCycle(null);
     setSelectedTemplateId(null);
 
@@ -72,17 +74,18 @@ const CyclesListPage = ({navigation}) => {
 
 
 
-    const fetchAllCycles = async () => {
-      //console.log("je suis la page manage_Cycle ");
-      try {
-        const response = await axios.get(`http://${myip}:80/${mydbAPI}/get_allCycles.php`);
-        setCycles(response.data);
-        setFiltredCycle(response.data)
+    const fetchAllCycles = async (identreprise) => {
 
-      } catch (error) {
-        //console.error('Erreur lors de la récupération des pilotes :', error);
-      }  
-      //console.log("Cycle2 : " + Cycles.length);
+
+try{
+      const api = await configureAPI(identreprise);
+      const response = await api.post('get_allCycles.php');
+      setCycles(response.data);
+      setFiltredCycle(response.data)
+      console.log('Données de la réponse :', response.data);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des cycles :', error);
+    }
     };   
     
     
@@ -124,7 +127,7 @@ const CyclesListPage = ({navigation}) => {
     } 
     else{
       //console.log("dans le else  : "+searchText);
-      fetchAllCycles();
+      fetchAllCycles(identreprise);
     }     
   };
 
@@ -132,7 +135,7 @@ const CyclesListPage = ({navigation}) => {
 
 
   useEffect(() => {
-    fetchAllCycles();
+    fetchAllCycles(identreprise);
     refresh();
      /*  
     const interval = setInterval(() => {
@@ -148,10 +151,6 @@ const CyclesListPage = ({navigation}) => {
 
  
       const renderCycleItem = ({ item }) => (
-
-
-
-
         <View style={styles.cardContainer}>   
           <View style={{backgroundColor:item.Color}}>           
                 <TouchableOpacity
@@ -185,14 +184,6 @@ const CyclesListPage = ({navigation}) => {
         </View>
 */}
 
-
-
-
-
-
-
- 
-      
   
   return (
     <View style={styles.container}>

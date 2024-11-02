@@ -9,10 +9,14 @@ import {
 import axios from 'axios';
 import { parseISO,format,addDays, addWeeks, subWeeks, startOfWeek, eachDayOfInterval } from 'date-fns';
 import { Table, Button, Select, Checkbox} from 'antd'; // Utilisation de composants de l'Ant Design pour une interface moderne
-import myip from '../../../IP';
+import { configureAPI } from '../../../IP';
+
 import { IoMdRefresh } from 'react-icons/io';
 
 // ... (previous imports and code remain unchanged)
+
+let identreprise = 58
+
 
 const AvailabilityManagementGrid = () => {
   const [drivers, setDrivers] = useState([]);
@@ -43,9 +47,9 @@ const AvailabilityManagementGrid = () => {
   const fetchDrivers = async () => {
     // Fetch drivers
     try {
-      const response = await axios.get(
-        'http://' + myip + ':80/api_schedule/get_alldrivers.php'
-      );
+      const api = await configureAPI(identreprise);
+      const response = await api.post('get_alldrivers.php');
+
       if (response.data) {
         setDrivers(response.data);
       }
@@ -57,8 +61,10 @@ const AvailabilityManagementGrid = () => {
   const fetchBlockTemplates = async () => {
     // Fetch block templates
     try {
-      const response = await axios.get(
-        'http://' + myip + ':80/api_schedule/get_all_blocktemplate.php');
+      const api = await configureAPI(identreprise); // Crée l'instance Axios avec l'URL configurée
+
+      // Requête pour récupérer tous les cycles
+      const response = await api.post('get_all_blocktemplate.php');
       if (response.data) {
         setBlockTemplates(response.data);
       }
@@ -70,8 +76,8 @@ const AvailabilityManagementGrid = () => {
   const fetchAvailabilities = async () => {
     // Fetch block templates
     try {
-      const response = await axios.get(
-        'http://' + myip + ':80/api_schedule/get_availability.php');
+      const api = await configureAPI(identreprise); 
+      const response = await api.post('get_availability.php');
       if (response.data) {
         setExistingAvailabilities(response.data);
       }
@@ -106,7 +112,9 @@ const AvailabilityManagementGrid = () => {
     return eachDayOfInterval({ start, end });
   };
 
-  const CreateAvailability = (driverId, day,repeatStatus) => {
+  const CreateAvailability = async (driverId, day,repeatStatus) => {
+
+ // const CreateAvailability = (driverId, day,repeatStatus) => {
     // Gérez les cycles de disponibilité sélectionnés pour le chauffeur et le jour
     // Construct the availability object to be sent to the backend
    // const existingCycles = getExistingAvailabilitiesForDriverAndDay(driverId, day);
@@ -121,9 +129,22 @@ console.log("ListCycleToPass : "+listCycleToPass);
       RepeatStatus: repeatStatus,
     };
 
+
+    try {
+      const api = await configureAPI(identreprise); 
+      const response = await api.post('add_availability.php', availabilityData)
+      if (response.data) {
+        setExistingAvailabilities(response.data);
+      }
+    } catch (error) {
+      console.error('Error fetching availabilities:', error);
+    }
+  
+
     // Make an API call to save the availability
+/*
     axios.post(
-      'http://' + myip + ':80/api_schedule/add_availability.php', availabilityData)
+     `http://${myip}:80/${mydbAPI}/add_availability.php`, availabilityData)
       .then((response) => {
         // Handle success response if needed
         fetchAvailabilities();
@@ -134,6 +155,7 @@ console.log("ListCycleToPass : "+listCycleToPass);
         // Handle error response if needed
         console.error('Error saving availability:', error);
       });
+      */
   };
 
 
@@ -143,31 +165,28 @@ console.log("ListCycleToPass : "+listCycleToPass);
    
   };
 
-  const updateAvailability = (driverId, day, NewListCycle) => {
 
-    console.log("here driverId : " +driverId);
-    const data = {
-      DriverId: driverId,
-      Date: format(day, 'yyyy-MM-dd'),
-      NewListCycle: NewListCycle,
-      RepeatStatus: 'false',
-    };
-    axios.post('http://' + myip + ':80/api_schedule/update_availability.php', data)
-    .then(response => {
-      console.log('Block updated successfully!', response.data);
-      // Handle success, maybe reset the InputNumber or perform other operations
-      //setRepeatVisibility(true);
+  const updateAvailability = async (driverId, day, NewListCycle) => {
+
+      console.log("here driverId : " +driverId);
+      const data = {
+        DriverId: driverId,
+        Date: format(day, 'yyyy-MM-dd'),
+        NewListCycle: NewListCycle,
+        RepeatStatus: 'false',
+      };
+
+  try {
+    const api = await configureAPI(identreprise); 
+    const response = await api.post('update_availability.php', data)
+    if (response.data) {
       console.log("NewListCycle in update: "+ NewListCycle);
       setListCycleToPass(NewListCycle);
-      fetchAvailabilities();
-      
-
-    })
-    .catch(error => {
-      console.error('Error creating block:', error);
-      // Handle the error or show a message to the user
-    });
-  };
+      fetchAvailabilities();    }
+  } catch (error) {
+    console.error('Error fetching availabilities:', error);
+  }
+};
 
  /* const handleOnchange=(selectedCycle)=>{
      

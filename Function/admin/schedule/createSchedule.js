@@ -1,13 +1,13 @@
-import axios from 'axios';
 import generateScheduleID from './generateScheduleID';
-//import myip from '../../../IP';
-//import mydbAPI from '../../../IP';
-import { myip, mydbAPI } from "../../../IP"; // Importez avec les accolades
+import { configureAPI } from '../../../IP';
 
 import fetchSchedules from './fetchSchedules';
 import fetchAvailableBlocks from './fetchAvailableBlocks';
 
 const createSchedule = async (day, driver, selectedUnassignedBlock, setSchedules, setAvailableblocks) => {
+  const  identreprise = 58;
+
+
   const scheduleData = {
     ScheduleId: generateScheduleID(day, selectedUnassignedBlock.Name, driver.DriverId),
     BlockId: selectedUnassignedBlock.blockId,
@@ -17,7 +17,8 @@ const createSchedule = async (day, driver, selectedUnassignedBlock, setSchedules
   };
 
   try {
-    const response = await axios.post(`http://${myip}:80/${mydbAPI}/add_schedule.php`, scheduleData, {
+    const api = await configureAPI(identreprise);
+    const response = await api.post('add_schedule.php', scheduleData, {
       headers: {
         'Content-Type': 'application/json',
       },

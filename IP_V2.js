@@ -3,6 +3,13 @@ import axios from 'axios';
 
 const myip = "localhost"; // Remplacez par votre adresse IP
 
+// Configuration globale pour Axios
+const api = axios.create({
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+
 // Fonction pour récupérer le nom de la base de données
 export const getDatabaseName = async (identreprise) => {
   try {
@@ -21,21 +28,9 @@ export const getDatabaseName = async (identreprise) => {
   }
 };
 
-// Fonction pour créer une instance Axios avec la base URL configurée dynamiquement
-export const configureAPI = async (identreprise) => {
-  const dbName = await getDatabaseName(identreprise);
-  if (!dbName) {
-    throw new Error('Impossible de récupérer le nom de la base de données');
-  }
+const getBaseURL = (dbName) => `http://${myip}:80/${dbName}/`;
 
-  // Créez une instance Axios avec la base URL configurée
-  return axios.create({
-    baseURL: `http://${myip}:80/${dbName}/`,
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-};
+// Exporter l'instance Axios pour une utilisation dans d'autres fichiers
+export { api,getBaseURL };
+ 
 
-// Exportez myip pour une éventuelle utilisation ailleurs si nécessaire
-export { myip };

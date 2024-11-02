@@ -1,17 +1,19 @@
-import axios from 'axios';
-//import myip from '../../../IP';
-//import mydbAPI from '../../../IP';
-import { myip, mydbAPI } from "../../../IP"; // Importez avec les accolades
+import { configureAPI } from '../../../IP';
 
 const fetchAvailableBlocks = async (setAvailableblocks) => {
-  try {
-    const response = await axios.get(`http://${myip}:80/${mydbAPI}/get_available_blocks.php`);
-    if (response.data) {
-      setAvailableblocks(response.data);
-    }
-  } catch (error) {
-    console.error('Error fetching available blocks:', error);
+  const  identreprise = 58;
+
+try{
+  const api = await configureAPI(identreprise); 
+  const response = await api.post('get_available_blocks.php');
+  console.log("response :  " + response.data[0]);
+  
+  if (response.data) {
+    setAvailableblocks(response.data);
   }
+} catch (error) {
+  console.error('Error fetching available blocks:', error);
+}  
 };
 
 export default fetchAvailableBlocks;

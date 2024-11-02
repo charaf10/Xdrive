@@ -1,10 +1,12 @@
-import axios from 'axios';
-//import myip from '../../../IP';
-//import mydbAPI from '../../../IP';
-import { myip, mydbAPI } from "../../../IP"; // Importez avec les accolades
+import { configureAPI } from "../../../IP"; // Importez avec les accolades
 
 import fetchSchedules from './fetchSchedules';
 import fetchAvailableBlocks from './fetchAvailableBlocks';
+
+
+const  identreprise = 58;
+
+
 
 const handleConfirmDelete = async (schedule, setShowDeleteModal, showDeleteModal, setSchedules, setAvailableblocks) => {
   const selectedScheduleData = {
@@ -13,7 +15,9 @@ const handleConfirmDelete = async (schedule, setShowDeleteModal, showDeleteModal
   };
 
   try {
-    const response = await axios.post(`http://${myip}:80/${mydbAPI}/delete_schedule.php`, selectedScheduleData, {
+    const api = await configureAPI(identreprise);
+
+    const response = await api.post('delete_schedule.php', selectedScheduleData, {
       headers: {
         'Content-Type': 'application/json',
       },

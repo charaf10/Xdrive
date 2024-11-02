@@ -9,16 +9,10 @@ import {
 import axios from 'axios';
 import { parseISO,format,addDays, addWeeks, subWeeks, startOfWeek, eachDayOfInterval } from 'date-fns';
 import { Table, Button, Select, Checkbox} from 'antd'; // Utilisation de composants de l'Ant Design pour une interface moderne
-//import myip from '../../../IP';
-//import { myip, mydbAPI } from "../../../IP"; // Importez avec les accolades
-import { getDatabaseConfig  } from "../../../IP";
-
+import myip from '../../../IP';
 import { IoMdRefresh } from 'react-icons/io';
 
 // ... (previous imports and code remain unchanged)
-
-let identreprise = 58
-
 
 const AvailabilityManagementGrid = () => {
   const [drivers, setDrivers] = useState([]);
@@ -49,11 +43,8 @@ const AvailabilityManagementGrid = () => {
   const fetchDrivers = async () => {
     // Fetch drivers
     try {
-      const { myip, mydbAPI } = await getDatabaseConfig(identreprise);
-
       const response = await axios.get(
-        `http://${myip}:80/${mydbAPI}/get_alldrivers.php`
-        //`http://${myip}:80/${mydbAPI}
+        'http://' + myip + ':80/api_schedule/get_alldrivers.php'
       );
       if (response.data) {
         setDrivers(response.data);
@@ -66,10 +57,8 @@ const AvailabilityManagementGrid = () => {
   const fetchBlockTemplates = async () => {
     // Fetch block templates
     try {
-      const { myip, mydbAPI } = await getDatabaseConfig(identreprise);
-
       const response = await axios.get(
-        `http://${myip}:80/${mydbAPI}/get_all_blocktemplate.php`);
+        'http://' + myip + ':80/api_schedule/get_all_blocktemplate.php');
       if (response.data) {
         setBlockTemplates(response.data);
       }
@@ -81,10 +70,8 @@ const AvailabilityManagementGrid = () => {
   const fetchAvailabilities = async () => {
     // Fetch block templates
     try {
-      const { myip, mydbAPI } = await getDatabaseConfig(identreprise);
-
       const response = await axios.get(
-        `http://${myip}:80/${mydbAPI}/get_availability.php`);
+        'http://' + myip + ':80/api_schedule/get_availability.php');
       if (response.data) {
         setExistingAvailabilities(response.data);
       }
@@ -136,7 +123,7 @@ console.log("ListCycleToPass : "+listCycleToPass);
 
     // Make an API call to save the availability
     axios.post(
-     `http://${myip}:80/${mydbAPI}/add_availability.php`, availabilityData)
+      'http://' + myip + ':80/api_schedule/add_availability.php', availabilityData)
       .then((response) => {
         // Handle success response if needed
         fetchAvailabilities();
@@ -165,7 +152,7 @@ console.log("ListCycleToPass : "+listCycleToPass);
       NewListCycle: NewListCycle,
       RepeatStatus: 'false',
     };
-    axios.post(`http://${myip}:80/${mydbAPI}/update_availability.php`, data)
+    axios.post('http://' + myip + ':80/api_schedule/update_availability.php', data)
     .then(response => {
       console.log('Block updated successfully!', response.data);
       // Handle success, maybe reset the InputNumber or perform other operations

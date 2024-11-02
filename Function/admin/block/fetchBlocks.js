@@ -1,11 +1,12 @@
-import axios from 'axios';
-//import myip from '../../../IP';
-//import mydbAPI from '../../../IP';
-import { myip, mydbAPI } from "../../../IP"; // Importez avec les accolades
+import { configureAPI } from "../../../IP";
+
+
 
 const fetchBlocks = async (setExistingBlocks) => {
+  const  identreprise = 58;
   try {
-    const response = await axios.get(`http://${myip}:80/${mydbAPI}/get-all-block.php`);
+    const api = await configureAPI(identreprise); 
+    const response = await api.post('get-all-block.php'); 
     if (response.data) {
       setExistingBlocks(response.data);
     }
